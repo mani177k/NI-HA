@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", sans-serif;
+  
+  --color-brand-purple: #C084FC;
+  --color-brand-pink: #FB7185;
+  --color-brand-orange: #FBBF24;
+  --color-dark-bg: #050505;
+  --color-dark-surface: #0a0a0a;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-[#E5E5E5] font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+.glass {
+  @apply backdrop-blur-[10px] bg-white/[0.03] border border-white/[0.08] shadow-none;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-linear-to-r from-[#C084FC] via-[#FB7185] to-[#FBBF24];
+}
+
+.section-padding {
+  @apply py-24 px-6 md:px-12 lg:px-24;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: #050505 !important;
+    color: #E5E5E5 !important;
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .gradient-text {
+    color: #C084FC !important; /* Fallback for print */
+    -webkit-background-clip: none !important;
+    background-clip: none !important;
+    background: none !important;
+  }
+}
